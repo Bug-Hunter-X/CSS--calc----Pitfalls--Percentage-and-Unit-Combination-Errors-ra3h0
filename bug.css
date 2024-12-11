@@ -1,0 +1,21 @@
+The CSS property `calc()` is used to perform calculations within CSS. However, there's a subtle error that can occur when using `calc()` with percentages and other units. For example, consider the following CSS:
+
+```css
+.element {
+  width: calc(50% + 10px);
+}
+```
+
+This code intends to set the width of the `.element` to 50% of its containing element plus an additional 10 pixels.  However, if the containing element's width is not explicitly set, the calculation might not work as expected, because `50%` refers to the width of the containing element, which is unknown. In this case, the browser might calculate it incorrectly. A similar issue might happen if there are other percentage-based widths in the chain of elements influencing the containing element's size, creating an infinite loop of dependencies.
+
+Another problem arises when mixing different units without considering operator precedence. For instance:
+
+```css
+width: calc(20% + 10px * 2);
+```
+
+Standard mathematical order of operations (PEMDAS/BODMAS) applies in `calc()`. Multiplication happens before addition.  To avoid unexpected results, always use parentheses to explicitly specify the order of operations if needed:
+
+```css
+width: calc(20% + (10px * 2));
+```
