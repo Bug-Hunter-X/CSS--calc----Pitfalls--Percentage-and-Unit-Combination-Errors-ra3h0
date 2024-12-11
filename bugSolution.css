@@ -1,0 +1,18 @@
+The following CSS demonstrates the corrected versions, addressing the issues in `bug.css`:
+
+```css
+/* Solution to Issue 1:  Ensure proper context for percentage calculations */
+.container {
+  width: 500px; /* Explicitly set the width of the container */
+}
+.element {
+  width: calc(50% + 10px); /* Now the percentage is correctly resolved */
+}
+
+/* Solution to Issue 2: Explicitly define the order of operations using parentheses */
+.element2 {
+  width: calc(20% + (10px * 2)); /* Corrected calculation using parentheses */
+}
+```
+
+By explicitly setting the width of the container element and using parentheses to ensure the correct order of operations, we avoid the unexpected behavior observed in `bug.css`.
